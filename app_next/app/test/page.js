@@ -1,6 +1,7 @@
 'use client'
 import axios from "axios"
 import { useState, useEffect } from "react"
+import { Actions } from "./actions"
 
 async function getData(){
     const response = await axios.get('https://689703ea250b078c2040bc27.mockapi.io/data')
@@ -24,7 +25,8 @@ export default function Page(){
     }, [])
     console.log(data)
     return(
-        <div>
+        <>
+                <div>
             {
                 data.map((data, index) =>(
                     <div key={index}>
@@ -34,5 +36,12 @@ export default function Page(){
                 ))
             }
         </div>
+        <div>
+            <form action={Actions}>
+                Email<input type="email" name="email"/>
+                <button type="submit">บันทึก</button>
+            </form>
+        </div>
+        </>
     )
 }
