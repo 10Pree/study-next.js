@@ -8,7 +8,7 @@ async function getContent(){
 
 export default async function page() {
     const data = await getContent()
-    console.log(data)
+    // console.log(data)
     return(
       <div>
                 <div>
