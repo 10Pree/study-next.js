@@ -19,8 +19,16 @@ export async function middleware(request) {
       throw new Error("email incorrect")
     }
 
-    console.log(payload)
-    return NextResponse.next();
+    // console.log(payload)
+
+    const requestHeaders = new Headers( request.headers)
+    requestHeaders.set('user', JSON.stringify({ email: payload.email}))
+    const response = NextResponse.next({
+      request: {
+        headers: requestHeaders
+      }
+    })
+    return response
   } catch (error) {
     return NextResponse.redirect(new URL("/", request.url));
   }
